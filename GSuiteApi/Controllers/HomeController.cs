@@ -30,8 +30,7 @@ namespace GSuiteApi.Controllers
         
         public IActionResult Index()
         {
-             GetService();        
-            
+            GetService();                   
             DirectoryService service = GetService();
             UsersResource.ListRequest request = service.Users.List();
             request.Customer = "my_customer";
@@ -55,14 +54,12 @@ namespace GSuiteApi.Controllers
                     employeeslist.Add(employees);
                     
                 }              
-            }
-      
+            }     
             return View(employeeslist);
         }
         public static DirectoryService GetService()
         {
             UserCredential credential;
-
             using (var stream =
                 new FileStream("credentials.json", FileMode.Open, FileAccess.Read))
             {
@@ -96,7 +93,8 @@ namespace GSuiteApi.Controllers
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return View(new ErrorViewModel 
+            { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }
